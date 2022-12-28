@@ -8,17 +8,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:  
-      NODE_ENV: ${{ NODE_ENV }}
-      local_port: ${{ LOCAL_SERVER_PORT }}
-      dbUserName: MONGO_USERNAME
-      dbName: ${{ MONGO_DATABASE_NAME }}
-      dbPass: ${{ MONGO_PASSWORD }}
-      dbHost: ${{ MONGO_HOST }}
-      dbPort: ${{ MONGO_PORT }}
-      redisPort: ${{ REDIS_URL }}
-      accessTokenPrivateKey: ${{ ACCESS_TOKEN_PRIVATE_KEY }}
-      accessTokenPublicKey: ${{ ACCESS_TOKEN_PUBLIC_KEY }}
-      
+      NODE_ENV: ${{ secrets.NODE_ENV }}
+      local_port: ${{ secrets.LOCAL_SERVER_PORT }}
+      dbUserName: ${{ secrets.MONGO_USERNAME }}
+      dbName: ${{ secrets.MONGO_DATABASE_NAME }}
+      dbPass: ${{ secrets.MONGO_PASSWORD }}
+      dbHost: ${{ secrets.MONGO_HOST }}
+      dbPort: ${{ secrets.MONGO_PORT }}
+      redisPort: ${{ secrets.REDIS_URL }}
+      accessTokenPrivateKey: ${{ secrets.ACCESS_TOKEN_PRIVATE_KEY }}
+      accessTokenPublicKey: ${{ secrets.ACCESS_TOKEN_PUBLIC_KEY }}
+
 
     steps:
     - name: Check out repository code
