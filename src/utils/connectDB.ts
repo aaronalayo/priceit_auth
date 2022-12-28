@@ -5,7 +5,6 @@ const dbUrl = `mongodb://${config.get('dbUserName')}:${config.get(
   'dbPass'
 )}@${config.get('dbHost')}:${config.get('dbPort')}/${config.get('dbName')}?authSource=admin`;
 console.log(dbUrl)
-console.log(config.get('dbPass'))
 const connectDB = async () => {
 mongoose.set('strictQuery', false);
   try {
