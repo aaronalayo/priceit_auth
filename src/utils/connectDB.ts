@@ -3,7 +3,7 @@ import config from 'config';
 
 const dbUrl = `mongodb://${config.get('dbUserName')}:${config.get(
   'dbPass'
-)}@localhost:${config.get('dbPort')}/${config.get('dbName')}?authSource=admin`;
+)}@${config.get('dbHost')}:${config.get('dbPort')}/${config.get('dbName')}?authSource=admin`;
 console.log(dbUrl)
 const connectDB = async () => {
 mongoose.set('strictQuery', false);
