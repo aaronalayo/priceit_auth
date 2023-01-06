@@ -12,11 +12,15 @@ const connectRedis = async () => {
     console.log('Redis client connected...');
   } catch (err: any) {
     console.log(err.message);
-    setTimeout(connectRedis, 5000);
+    // setTimeout(connectRedis, 5000);
   }
 };
 
 connectRedis();
 redisClient.on('error', (err) => console.log(err));
 
+
+
+
 export default redisClient;
+

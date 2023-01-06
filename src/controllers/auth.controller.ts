@@ -29,7 +29,9 @@ export const registerHandler = async (
   try {
     const user = await createUser({
       email: req.body.email,
-      name: req.body.name,
+      userName: req.body.userName,
+      firstName:req.body.firstName,
+      lastName:req.body.lastName,
       password: req.body.password,
     });
 

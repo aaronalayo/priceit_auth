@@ -31,12 +31,18 @@ export const findUser = async (
 ) => {
   return await userModel.findOne(query, {}, options).select('+password');
 };
+export const deleteUser = async (
+  query: FilterQuery<User>,
+) => {
+  return await userModel.findOneAndRemove(query);
+};
+
 
 // Sign Token
 export const signToken = async (user: DocumentType<User>) => {
   // Sign the access token
   const access_token = signJwt(
-    { sub: user._id },
+    { sub: omit(user.toJSON(), excludedFields) },
     {
       expiresIn: `${config.get<number>('accessTokenExpiresIn')}m`,
     }
