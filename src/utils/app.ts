@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import config from 'config';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import connectDB from '../utils/connectDB';
+import mongoose from '../utils/connectDB';
 import userRouter from '../routes/user.route';
 import authRouter from '../routes/auth.route';
 
@@ -62,6 +62,6 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 // const port = config.get<number>('port');
 // app.listen(port, () => {
 //   console.log(`Server started on port: ${port}`);
-//   connectDB();
+//   mongoose();
 // });
 export default app;

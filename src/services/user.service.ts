@@ -1,6 +1,8 @@
 import { omit, get } from 'lodash';
 import { FilterQuery, QueryOptions } from 'mongoose';
-import config from 'config';
+// import config from 'config';
+import { config } from '../../config/custom-environment-variables';
+
 import userModel, { User } from '../models/user.model';
 import { excludedFields } from '../controllers/auth.controller';
 import { signJwt } from '../utils/jwt';
@@ -44,7 +46,8 @@ export const signToken = async (user: DocumentType<User>) => {
   const access_token = signJwt(
     { sub: omit(user.toJSON(), excludedFields) },
     {
-      expiresIn: `${config.get<number>('accessTokenExpiresIn')}m`,
+      expiresIn: `${config.auth.expireIn * 60 * 1000}m`,
+      // expiresIn: `${config.get<number>('accessTokenExpiresIn')}m`,
     }
   );
 
@@ -52,7 +55,7 @@ export const signToken = async (user: DocumentType<User>) => {
   redisClient.set(user._id.toString(), JSON.stringify(user), {
     EX: 60 * 60,
   });
-  
+
   // Return access token
   return { access_token };
 };
