@@ -21,7 +21,7 @@ const MONGO_DB_NAME = process.env.MONGO_DATABASE_NAME
 const MONGO_URL = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}`;
 
 const ACCESS_TOKEN_EXPIRES_IN = process.env.ACCESS_TOKEN_EXPIRE as unknown as number;
-const ORIGIN = process.env.ORIGIN as unknown as number;
+const ORIGIN = process.env.ORIGIN as string;
 
 const ACCESS_TOKEN_PRIVATE_KEY = process.env.ACCESS_TOKEN_PRIVATE_KEY as String
 const ACCESS_TOKEN_PUBLIC_KEY = process.env.ACCESS_TOKEN_PUBLIC_KEY as String
@@ -47,6 +47,7 @@ export const config = {
     expireIn: ACCESS_TOKEN_EXPIRES_IN,
     accessTokenPrivateKey: ACCESS_TOKEN_PRIVATE_KEY,
     accessTokenPublicKey: ACCESS_TOKEN_PUBLIC_KEY,
+    origin: ORIGIN
   },
   redis: {
     host: REDIS_HOST,
