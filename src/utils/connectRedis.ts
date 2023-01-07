@@ -1,10 +1,9 @@
-import redis from 'redis';
+import * as redis from 'redis';
 import dotenv from 'dotenv';
-import { config } from '../../config/custom-environment-variables.js';
-
-
+import { config } from '../../config/custom-environment-variables';
 dotenv.config();
-export const redisClient = redis.createClient({
+
+const redisClient = redis.createClient({
   socket: {
     host: config.redis.host,
     port: config.redis.port
@@ -23,7 +22,4 @@ export const redisClient = redis.createClient({
   await redisClient.ping();
 })();
 
-
-
-export default redisClient;
-
+export default redisClient

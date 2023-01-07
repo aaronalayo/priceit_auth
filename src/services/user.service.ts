@@ -2,12 +2,11 @@ import { omit, get } from 'lodash';
 import { FilterQuery, QueryOptions } from 'mongoose';
 // import config from 'config';
 import { config } from '../../config/custom-environment-variables';
-
 import userModel, { User } from '../models/user.model';
 import { excludedFields } from '../controllers/auth.controller';
 import { signJwt } from '../utils/jwt';
-import redisClient from '../utils/connectRedis';
 import { DocumentType } from '@typegoose/typegoose';
+import redisClient from '../utils/connectRedis';
 
 // CreateUser service
 export const createUser = async (input: Partial<User>) => {

@@ -29,9 +29,10 @@ const ACCESS_TOKEN_PUBLIC_KEY = process.env.ACCESS_TOKEN_PUBLIC_KEY as String
 const LOCAL_SERVER_PORT = process.env.LOCAL_SERVER_PORT as unknown as number;
 const DOCKER_SERVER_PORT = process.env.DOCKER_SERVER_PORT as unknown as number;
 
-const REDIS_HOST = process.env.REDIS_HOST as string;
+const REDIS_HOST = process.env.REDIS_HOST
 const REDIS_PORT = process.env.REDIS_PORT as unknown as number;
-const REDIS_PASSWORD = process.env.REDIS_PASSWORD as unknown as string;
+const REDIS_PASSWORD = process.env.REDIS_PASSWORD
+const REDIS_URL = process.env.REDIS_URL 
 
 
 export const config = {
@@ -51,6 +52,7 @@ export const config = {
     host: REDIS_HOST,
     port: REDIS_PORT,
     password: REDIS_PASSWORD,
+    url: REDIS_URL
   },
   // docker_server: {
   //   docker_port: DOCKER_SERVER_PORT
