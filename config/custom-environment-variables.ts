@@ -17,7 +17,6 @@ const MONGO_USERNAME = process.env.MONGO_USERNAME || '';
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD || '';
 const MONGO_HOST = process.env.MONGO_HOST || '';
 const MONGO_PORT = process.env.MONGO_PORT || '';
-const MONGO_DB_NAME = process.env.MONGO_DATABASE_NAME
 const MONGO_URL = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}`;
 
 const ACCESS_TOKEN_EXPIRES_IN = process.env.ACCESS_TOKEN_EXPIRE as unknown as number;
@@ -54,8 +53,5 @@ export const config = {
     port: REDIS_PORT,
     password: REDIS_PASSWORD,
     url: REDIS_URL
-  },
-  // docker_server: {
-  //   docker_port: DOCKER_SERVER_PORT
-  // }
+  }
 };

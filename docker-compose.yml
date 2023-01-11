@@ -35,7 +35,7 @@ services:
     image: redis:latest
     container_name: redis_auth
     ports:
-      - '6380:6380'
+      - 6380:6380
     volumes:
       - redis:/data
 volumes:

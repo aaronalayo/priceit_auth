@@ -1,6 +1,6 @@
-FROM node:18
+FROM alpine
 
-WORKDIR /
+RUN apk add --update nodejs npm
 
 COPY package.json .
 
@@ -8,4 +8,4 @@ RUN npm install
 
 COPY . .
 
-CMD [ "npm", "run", "start" ]
+CMD [ "npm", "run", "dev" ]
