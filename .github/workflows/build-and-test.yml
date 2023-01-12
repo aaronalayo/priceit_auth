@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     env:  
       NODE_ENV: ${{ secrets.NODE_ENV }}
-      local_port: ${{ secrets.LOCAL_SERVER_PORT }}
-      PORT: ${{ secrets.PORT }}
+      local_port: ${{ secrets.PORT }}
+      LOCAL_SERVER_PORT: ${{ secrets.PORT }}
       dbUserName: ${{ secrets.MONGO_USERNAME }}
       dbName: ${{ secrets.MONGO_DATABASE_NAME }}
       dbPass: ${{ secrets.MONGO_PASSWORD }}
