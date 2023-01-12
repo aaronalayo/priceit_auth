@@ -11,7 +11,7 @@ jobs:
     env:  
       NODE_ENV: ${{ secrets.NODE_ENV }}
       local_port: ${{ secrets.PORT }}
-      LOCAL_SERVER_PORT: ${{ secrets.PORT }}
+      LOCAL_SERVER_PORT: ${{ secrets.LOCAL_SERVER_PORT }}
       dbUserName: ${{ secrets.MONGO_USERNAME }}
       dbName: ${{ secrets.MONGO_DATABASE_NAME }}
       dbPass: ${{ secrets.MONGO_PASSWORD }}
