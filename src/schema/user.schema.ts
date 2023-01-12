@@ -1,4 +1,4 @@
-import { object, string, TypeOf } from 'zod';
+import { object, string, TypeOf, array, any, z } from 'zod';
 
 export const createUserSchema = object({
   body: object({
@@ -30,5 +30,26 @@ export const loginUserSchema = object({
   }),
 });
 
+export const updateUserSchema = z.object({
+  body: object({
+    searches: z.array(z.string()),
+    items:z.array(z.object({
+      id:string(),
+      title:string(),
+      price: z.object({
+        value: z.number(),
+        currency: string()
+      }),
+      image: z.object({
+        uri: string()
+      }),
+      itemRef: string()
+
+    }))
+
+  })
+})
+
 export type CreateUserInput = TypeOf<typeof createUserSchema>['body'];
 export type LoginUserInput = TypeOf<typeof loginUserSchema>['body'];
+export type UpdateUserProps = TypeOf<typeof updateUserSchema>['body'];

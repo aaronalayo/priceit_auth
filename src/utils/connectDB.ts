@@ -6,6 +6,8 @@ const dbUrl = `mongodb://${config.get('dbUserName')}:${config.get(
 )}@${config.get('dbHost')}:${config.get('dbPort')}/${config.get('dbName')}?authSource=admin`;
 const connectDB = async () => {
 mongoose.set('strictQuery', false);
+
+
   try {
     await mongoose.connect(dbUrl);
     console.log('Database connected...');

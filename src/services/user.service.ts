@@ -1,11 +1,11 @@
-import { omit, get } from 'lodash';
-import { FilterQuery, QueryOptions } from 'mongoose';
-import config from 'config';
-import userModel, { User } from '../models/user.model';
-import { excludedFields } from '../controllers/auth.controller';
-import { signJwt } from '../utils/jwt';
-import redisClient from '../utils/connectRedis';
-import { DocumentType } from '@typegoose/typegoose';
+import { omit, get } from "lodash";
+import { FilterQuery, ObjectId, QueryOptions, Types } from "mongoose";
+import config from "config";
+import userModel, { User } from "../models/user.model";
+import { excludedFields } from "../controllers/auth.controller";
+import { signJwt } from "../utils/jwt";
+import redisClient from "../utils/connectRedis";
+import { DocumentType } from "@typegoose/typegoose";
 
 // CreateUser service
 export const createUser = async (input: Partial<User>) => {
@@ -29,30 +29,36 @@ export const findUser = async (
   query: FilterQuery<User>,
   options: QueryOptions = {}
 ) => {
-  return await userModel.findOne(query, {}, options).select('+password');
+  return await userModel.findOne(query, {}, options).select("+password");
 };
-export const deleteUser = async (
-  query: FilterQuery<User>,
-) => {
-  return await userModel.findOneAndRemove(query);
+export const deleteUser = async (id: string) => {
+  return await userModel.findByIdAndRemove(id).deleteOne();
 };
 
+export const updateUser = async (id:string, data:any) => {
+  return await userModel.findByIdAndUpdate({_id:id}, data, function (err:any, docs:any) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Updated User : ", docs);
+    }
+  });
+};
 
 // Sign Token
 export const signToken = async (user: DocumentType<User>) => {
   // Sign the access token
   const access_token = signJwt(
-    { sub: omit(user.toJSON(), excludedFields) },
+    { sub: user },
     {
-      expiresIn: `${config.get<number>('accessTokenExpiresIn')}m`,
+      expiresIn: `${config.get<number>("accessTokenExpiresIn")}m`,
     }
   );
-
 
   redisClient.set(user._id.toString(), JSON.stringify(user), {
     EX: 60 * 60,
   });
-  
+
   // Return access token
   return { access_token };
 };
