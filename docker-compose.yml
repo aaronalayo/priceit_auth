@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     env_file: ./.env
     ports:  
-      - "${DOCKER_SERVER_PORT}:${PORT}"
+      - 8080:${PORT}
     environment:
       DOCKER_SERVER_PORT: ${DOCKER_SERVER_PORT}
       MONGO_HOST: ${MONGO_HOST}
@@ -15,7 +15,7 @@ services:
       MONGO_USERNAME: ${MONGO_USERNAME}
       MONGO_PASSWORD: ${MONGO_PASSWORD}
     volumes:
-      - .:/usr/src/price_it_app
+      - .:/usr/src/price_it_auth
       - /usr/src/app/node_modules
 
   # mongo:
