@@ -1,4 +1,4 @@
-
+    
 POST http://localhost:8009/api/auth/register
 Content-Type: application/json
 
