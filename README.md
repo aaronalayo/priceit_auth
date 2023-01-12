@@ -49,10 +49,10 @@ Use the guide below to run the application locally. Remember to have the followi
 
 Following criterias are needed:
 - Docker installed
-- [PriceIT | AUTH API](https://github.com/aaronalayo/priceit_frontend)
-- [PriceIT | SEARCH API](https://github.com/aaronalayo/priceit-backend)
+- Frontend + Search API configured
 
 ### Installation
+<details><summary> Installation Guide</summary>
 
 1. Clone the repo
    ```sh
@@ -88,15 +88,17 @@ Following criterias are needed:
    ```
     http://localhost:<DOCKER_SERVER_PORT>
    ```
+</details>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">[<a href="#readme-top">back to top</a>]</p>
+
 
 ## Usage
 <details><summary> Usage Examples</summary>
 [Coming soon]
 </details>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">[<a href="#readme-top">back to top</a>]</p>
 
 
 ## Project Services / Repositories
@@ -106,7 +108,7 @@ Project Links:
 - [![PriceIt-search][PriceIt-search-logo]][PriceIt-search-url]
 - [![PriceIt-auth][PriceIt-auth-logo]][PriceIt-auth-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">[<a href="#readme-top">back to top</a>]</p>
 
 
 <!-- LICENSE -->
@@ -114,7 +116,7 @@ Project Links:
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">[<a href="#readme-top">back to top</a>]</p>
 
 
 
