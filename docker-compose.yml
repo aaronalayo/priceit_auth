@@ -6,15 +6,14 @@ services:
     build: .
     restart: unless-stopped
     env_file: ./.env
-    ports:  
-      - '${DOCKER_SERVER_PORT}:${LOCAL_SERVER_PORT}'
     environment:
-      LOCAL_SERVER_PORT: ${PORT}
       DOCKER_SERVER_PORT: ${DOCKER_SERVER_PORT}
       MONGO_HOST: ${MONGO_HOST}
       MONGO_PORT: ${MONGO_PORT}
       MONGO_USERNAME: ${MONGO_USERNAME}
-      MONGO_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_PASSWORD: ${MONGO_PASSWORD}s
+    ports: 
+      - ${DOCKER_SERVER_PORT}:${PORT}
     volumes:
       - .:/usr/src/price_it_auth
       - /usr/src/app/node_modules
