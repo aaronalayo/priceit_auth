@@ -1,10 +1,11 @@
-import { omit, get } from "lodash";
+import { omit, get } from 'lodash';
+// import config from 'config';
+import { config } from '../../config/custom-environment-variables';
+import redisClient from '../utils/connectRedis';
 import { FilterQuery, ObjectId, QueryOptions, Types } from "mongoose";
-import config from "config";
 import userModel, { User } from "../models/user.model";
 import { excludedFields } from "../controllers/auth.controller";
 import { signJwt } from "../utils/jwt";
-import redisClient from "../utils/connectRedis";
 import { DocumentType } from "@typegoose/typegoose";
 
 // CreateUser service
@@ -51,7 +52,8 @@ export const signToken = async (user: DocumentType<User>) => {
   const access_token = signJwt(
     { sub: user },
     {
-      expiresIn: `${config.get<number>("accessTokenExpiresIn")}m`,
+      expiresIn: `${config.auth.expireIn * 60 * 1000}m`,
+      // expiresIn: `${config.get<number>('accessTokenExpiresIn')}m`,
     }
   );
 

@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:  
       NODE_ENV: ${{ secrets.NODE_ENV }}
-      local_port: ${{ secrets.LOCAL_SERVER_PORT }}
+      local_port: ${{ secrets.PORT }}
       dbUserName: ${{ secrets.MONGO_USERNAME }}
       dbName: ${{ secrets.MONGO_DATABASE_NAME }}
       dbPass: ${{ secrets.MONGO_PASSWORD }}
@@ -17,7 +17,6 @@ jobs:
       dbPort: ${{ secrets.MONGO_PORT }}
       redisPort: ${{ secrets.REDIS_URL }}
       accessTokenPrivateKey: ${{ secrets.ACCESS_TOKEN_PRIVATE_KEY }}
-      accessTokenPublicKey: ${{ secrets.ACCESS_TOKEN_PUBLIC_KEY }}
 
 
     steps:
