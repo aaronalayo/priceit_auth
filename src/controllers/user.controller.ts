@@ -12,9 +12,7 @@ export const getMeHandler = (
   next: NextFunction
 ) => {
   try {
-    console.log(res);
     const user = res.locals.user;
-    console.log(user);
     res.status(200).json({
       status: "success",
       data: {
@@ -27,7 +25,7 @@ export const getMeHandler = (
 };
 
 export const updateMeHandler = async (
-  req: Request<{userId:string},{}, UpdateUserProps>,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -36,11 +34,8 @@ export const updateMeHandler = async (
     const userId = req.params.userId.trim();
     console.log(req.body)
     const objectId = new mongoose.Types.ObjectId(userId)
-    console.log( mongoose.Types.ObjectId.isValid(objectId))
-    await updateUser( objectId, {
-      searches:req.body.searches,
-      items:req.body.items
-    });
+    // console.log( mongoose.Types.ObjectId.isValid(objectId))
+    await updateUser( objectId, req.body);
    
     const user = await findUserById(userId);
     return res.status(200).json(user);

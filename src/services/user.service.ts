@@ -1,13 +1,13 @@
-import { omit, get } from 'lodash';
+import { omit, get } from "lodash";
 // import config from 'config';
-import { config } from '../../config/custom-environment-variables';
-import redisClient from '../utils/connectRedis';
+import { config } from "../../config/custom-environment-variables";
+import redisClient from "../utils/connectRedis";
 import { FilterQuery, ObjectId, QueryOptions, Types } from "mongoose";
 import userModel, { User } from "../models/user.model";
 import { excludedFields } from "../controllers/auth.controller";
 import { signJwt } from "../utils/jwt";
 import { DocumentType } from "@typegoose/typegoose";
-
+import { UpdateUserProps } from "../schema/user.schema";
 // CreateUser service
 export const createUser = async (input: Partial<User>) => {
   const user = await userModel.create(input);
@@ -36,14 +36,26 @@ export const deleteUser = async (id: string) => {
   return await userModel.findByIdAndRemove(id).deleteOne();
 };
 
-export const updateUser = async (id:Types.ObjectId, data:any) => {
-  return await userModel.findByIdAndUpdate({_id:id}, data, {new: true}, function (err:any, docs:any) {
-    if (err) {
+export const updateUser = async (id: Types.ObjectId, data: any) => {
+  const update = { $set: { items: data.items } };
+  const options = { upsert: true, new: true };
+  return await userModel
+    .findByIdAndUpdate(
+      { _id: id },
+      update,
+      options,
+      function (err: any, docs: any) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("Updated User : ", docs);
+        }
+      }
+    )
+    .clone()
+    .catch(function (err) {
       console.log(err);
-    } else {
-      console.log("Updated User : ", docs);
-    }
-  }).clone().catch(function(err){ console.log(err)});
+    });
 };
 
 // Sign Token

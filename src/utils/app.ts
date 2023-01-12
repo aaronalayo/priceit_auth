@@ -22,14 +22,24 @@ app.use(cookieParser());
 // 3. Logger
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
-// 4. Cors
-app.use(
-  cors({
-    origin: config.get<string>('origin'),
-    // origin: '*',
-    credentials: true,
-  })
-);
+// // 4. Cors
+// app.use(
+//   cors({
+//     origin: config.get<string>('origin'),
+//     // origin: 'http://localhost:5173/',
+//     credentials: true,
+
+//   })
+// );
+const allowedOrigins = ['http://localhost:5173'];
+
+const options: cors.CorsOptions = {
+  origin: allowedOrigins,
+  credentials: true,
+  allowedHeaders:['Access-Control-Allow-Credentials'],
+  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+};
+app.use(cors(options));
 
 // 5. Routes
 app.use('/api/users', userRouter);
