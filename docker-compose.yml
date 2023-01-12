@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   price_it_auth:
     # depends_on:
@@ -6,14 +6,14 @@ services:
     build: .
     restart: unless-stopped
     env_file: ./.env
+    ports:  
+      - 8000:8003
     environment:
       DOCKER_SERVER_PORT: ${DOCKER_SERVER_PORT}
       MONGO_HOST: ${MONGO_HOST}
       MONGO_PORT: ${MONGO_PORT}
       MONGO_USERNAME: ${MONGO_USERNAME}
-      MONGO_PASSWORD: ${MONGO_PASSWORD}s
-    ports: 
-      - ${DOCKER_PORT}
+      MONGO_PASSWORD: ${MONGO_PASSWORD}
     volumes:
       - .:/usr/src/price_it_auth
       - /usr/src/app/node_modules
