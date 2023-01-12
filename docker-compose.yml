@@ -7,8 +7,8 @@ services:
     restart: unless-stopped
     env_file: ./.env
     ports:
-      - ${DOCKER_SERVER_PORT}:${PORT}
-    env ironment:
+      - 8006:8009
+    environment:
       DOCKER_SERVER_PORT: ${DOCKER_SERVER_PORT}
       MONGO_HOST: ${MONGO_HOST}
       MONGO_PORT: ${MONGO_PORT}
@@ -17,28 +17,3 @@ services:
     volumes:
       - .:/usr/src/price_it_auth
       - /usr/src/app/node_modules
-
-  # mongo:
-  #   image: mongo:latest
-  #   container_name: mongo
-  #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: ${DOCKER_MONGO_USERNAME}
-  #     MONGO_INITDB_ROOT_PASSWORD: ${DOCKER_MONGO_PASSWORD}
-  #     MONGO_INITDB_PORT: ${DOCKER_MONGO_PORT}
-  #     MONGO_INITDB_HOST: ${DOCKER_MONGO_HOST}
-  #   env_file:
-  #     - ./.env
-  #   volumes:
-  #     - mongo:/data/mongo
-  #   ports:
-  #     - ${DOCKER_MONGO_PORT}:27017
-  # redis:
-  #   image: redis:latest
-  #   container_name: redis_auth
-  #   ports:
-  #     - 6380:6380
-  #   volumes:
-  #     - redis:/data
-# volumes:
-#   mongo:
-#   redis:
