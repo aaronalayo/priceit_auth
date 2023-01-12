@@ -7,7 +7,7 @@ import {
     prop,
   } from '@typegoose/typegoose';
   import bcrypt from 'bcryptjs';
-  
+  import { Item } from './item.model';
   @index({ email: 1 })
   @pre<User>('save', async function () {
     // Hash password if the password is new or was updated
@@ -42,7 +42,13 @@ import {
   
     @prop({ default: 'user' })
     role: string;
-  
+    
+    @prop()
+    searches: [];
+
+    @prop()
+    items: Item[];
+
     // Instance method to check if passwords match
     async comparePasswords(hashedPassword: string, candidatePassword: string) {
       return await bcrypt.compare(candidatePassword, hashedPassword);

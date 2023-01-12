@@ -14,7 +14,7 @@ const app = express();
 // Middleware
 
 // 1. Body Parser
-app.use(express.json({ limit: '10kb' }));
+app.use(express.json({ limit: '50mb' }));
 
 // 2. Cookie Parser
 app.use(cookieParser());
@@ -54,7 +54,7 @@ app.all('*', (req: Request, res: Response, next: NextFunction) => {
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   err.status = err.status || 'error';
   err.statusCode = err.statusCode || 500;
-
+  console.log(err)
   res.status(err.statusCode).json({
     status: err.status,
     message: err.message,
