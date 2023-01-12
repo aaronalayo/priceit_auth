@@ -7,8 +7,8 @@ services:
     restart: unless-stopped
     env_file: ./.env
     ports:
-      - 8000:8006
-      # - ${DOCKER_SERVER_PORT}:${PORT}
+      # - 8000:8006
+      - ${DOCKER_SERVER_PORT}:${PORT}
     environment:
       DOCKER_SERVER_PORT: ${DOCKER_SERVER_PORT}
       MONGO_HOST: ${MONGO_HOST}
