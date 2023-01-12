@@ -1,13 +1,13 @@
 require('dotenv').config();
 import express, { NextFunction, Request, Response,  } from 'express';
 import morgan from 'morgan';
-// import config from 'config';
+import config from 'config';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import mongoose from '../utils/connectDB';
 import userRouter from '../routes/user.route';
 import authRouter from '../routes/auth.route';
-import { config } from '../../config/custom-environment-variables';
+// import { config } from '../../config/custom-environment-variables';
 
 const app = express();
 
@@ -25,8 +25,8 @@ if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 // 4. Cors
 app.use(
   cors({
-    // origin: config.get<string>('origin'),
-    origin: config.auth.origin,
+    origin: config.get<string>('origin'),
+    // origin: '*',
     credentials: true,
   })
 );
