@@ -25,7 +25,7 @@ const ORIGIN = process.env.ORIGIN as string;
 const ACCESS_TOKEN_PRIVATE_KEY = process.env.ACCESS_TOKEN_PRIVATE_KEY as String
 const ACCESS_TOKEN_PUBLIC_KEY = process.env.ACCESS_TOKEN_PUBLIC_KEY as String
 
-const LOCAL_SERVER_PORT = process.env.LOCAL_SERVER_PORT as unknown as number;
+const PORT = process.env.PORT as unknown as number;
 const DOCKER_SERVER_PORT = process.env.DOCKER_SERVER_PORT as unknown as number;
 
 const REDIS_HOST = process.env.REDIS_HOST
@@ -39,7 +39,7 @@ export const config = {
     url: MONGO_URL,
   },
   server: {
-    local_port: LOCAL_SERVER_PORT,
+    local_port: PORT,
     docker_port: DOCKER_SERVER_PORT,
   },
   auth: {
