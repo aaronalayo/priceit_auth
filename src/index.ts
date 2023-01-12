@@ -1,12 +1,13 @@
 require('dotenv').config();
 import express, { NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
-import config from 'config';
 import cors from 'cors';
+import { config } from '../config/custom-environment-variables';
 import cookieParser from 'cookie-parser';
-import connectDB from './utils/connectDB';
+import mongoose from './utils/connectDB';
 import userRouter from './routes/user.route';
 import authRouter from './routes/auth.route';
+
 
 // const app = express();
 
@@ -59,9 +60,11 @@ import authRouter from './routes/auth.route';
 //   });
 // });
 import app from './utils/app'
-const port = config.get<number>('port');
+
+const port = config.server.local_port;
 app.listen(port, () => {
-  console.log(`Server started on port: ${port}`);
-  connectDB();
+  console.log(`⚡️[AUTH_API]: Server is running at http://localhost:${port} | Docker PORT: ${config.server.docker_port}`);
+  mongoose;
 });
+
 export default app;

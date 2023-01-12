@@ -1,4 +1,5 @@
-import config from 'config';
+import { config } from '../../config/custom-environment-variables';
+// import config from 'config';
 import { CookieOptions, NextFunction, Request, Response } from 'express';
 import { CreateUserInput, LoginUserInput } from '../schema/user.schema';
 import { createUser, findUser, signToken } from '../services/user.service';
@@ -10,9 +11,12 @@ export const excludedFields = ['password'];
 // Cookie options
 const accessTokenCookieOptions: CookieOptions = {
   expires: new Date(
-    Date.now() + config.get<number>('accessTokenExpiresIn') * 60 * 1000
+    // Date.now() + config.get<number>('accessTokenExpiresIn') * 60 * 1000
+    Date.now() + config.auth.expireIn * 60 * 1000
+
   ),
-  maxAge: config.get<number>('accessTokenExpiresIn') * 60 * 1000,
+  // maxAge: config.get<number>('accessTokenExpiresIn') * 60 * 1000,
+  maxAge: Number(config.auth.expireIn) * 60 * 1000,
   httpOnly: true,
   sameSite: 'lax',
 };
