@@ -6,8 +6,8 @@ services:
     build: .
     restart: unless-stopped
     env_file: ./.env
-    ports:
-      - ${DOCKER_SERVER_PORT}:${local_port}
+    ports:  
+      - ${DOCKER_SERVER_PORT}:${LOCAL_SERVER_PORT}
     environment:
       DOCKER_SERVER_PORT: ${DOCKER_SERVER_PORT}
       MONGO_HOST: ${MONGO_HOST}
