@@ -27,17 +27,20 @@ export const getMeHandler = (
 };
 
 export const updateMeHandler = async (
-  req: Request,
+  req: Request<{userId:string},{}, UpdateUserProps>,
   res: Response,
   next: NextFunction
 ) => {
   try {
 
     const userId = req.params.userId.trim();
-    console.log(userId)
+    console.log(req.body)
     const objectId = new mongoose.Types.ObjectId(userId)
-    console.log(objectId)
-    await updateUser( userId, req.body);
+    console.log( mongoose.Types.ObjectId.isValid(objectId))
+    await updateUser( objectId, {
+      searches:req.body.searches,
+      items:req.body.items
+    });
    
     const user = await findUserById(userId);
     return res.status(200).json(user);

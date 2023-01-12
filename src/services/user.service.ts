@@ -35,14 +35,14 @@ export const deleteUser = async (id: string) => {
   return await userModel.findByIdAndRemove(id).deleteOne();
 };
 
-export const updateUser = async (id:string, data:any) => {
-  return await userModel.findByIdAndUpdate({_id:id}, data, function (err:any, docs:any) {
+export const updateUser = async (id:Types.ObjectId, data:any) => {
+  return await userModel.findByIdAndUpdate({_id:id}, data, {new: true}, function (err:any, docs:any) {
     if (err) {
       console.log(err);
     } else {
       console.log("Updated User : ", docs);
     }
-  });
+  }).clone().catch(function(err){ console.log(err)});
 };
 
 // Sign Token
