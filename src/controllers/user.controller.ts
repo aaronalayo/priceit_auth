@@ -4,6 +4,8 @@ import {
   findAllUsers,
   findUserById,
   addItem,
+  deleteSearchWord,
+  addSearchWord,
 } from "../services/user.service";
 import mongoose, {Types  } from "mongoose";
 import { UpdateUserProps } from "../schema/user.schema";
@@ -24,7 +26,25 @@ export const getMeHandler = (
     next(err);
   }
 };
-
+export const getUserItemsHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const userId = req.params.userId.trim();
+    const objectId = new mongoose.Types.ObjectId(userId)
+    const user = await findUserById(userId);
+    res.status(200).json({
+      status: "success",
+      data: {
+        user,
+      },
+    });
+  } catch (err: any) {
+    next(err);
+  }
+};
 export const addItemHandler = async (
   req: Request,
   res: Response,
@@ -38,7 +58,7 @@ export const addItemHandler = async (
     // console.log( mongoose.Types.ObjectId.isValid(objectId))
     await addItem( objectId, req.body);
    
-    const user = await findUserById(userId);
+    
     return res.status(200).json({message: "Product added to favorites"});
   } catch (err: any) {
     console.log(err)
@@ -58,9 +78,45 @@ export const deleteItemHandler = async (
     const objectId = new mongoose.Types.ObjectId(userId)
     // console.log( mongoose.Types.ObjectId.isValid(objectId))
     await deleteItem( objectId, req.body);
+    return res.status(200).json({message: "Product deleted from favorites"});
+  } catch (err: any) {
+    console.log(err)
+    next(err);
+  }
+};
+export const deleteSearchHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+
+    const userId = req.params.userId.trim();
+    console.log(req.body)
+    const objectId = new mongoose.Types.ObjectId(userId)
+    // console.log( mongoose.Types.ObjectId.isValid(objectId))
+    await deleteSearchWord( objectId, req.body);
+    return res.status(200).json({message: "Search deleted from favorites"});
+  } catch (err: any) {
+    console.log(err)
+    next(err);
+  }
+};
+export const addSearchHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    res.header("Access-Control-Allow-Origin", "*");
+    const userId = req.params.userId.trim();
+    console.log(req.body)
+    const objectId = new mongoose.Types.ObjectId(userId)
+    // console.log( mongoose.Types.ObjectId.isValid(objectId))
+    await addSearchWord( objectId, req.body.searchWord);
    
-    const user = await findUserById(userId);
-    return res.status(200).json({message: "Product deleted to favorites"});
+    
+    return res.status(200).json({message: "Product added to favorites"});
   } catch (err: any) {
     console.log(err)
     next(err);

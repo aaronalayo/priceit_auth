@@ -7,6 +7,7 @@ import {
     prop,
   } from '@typegoose/typegoose';
   import bcrypt from 'bcryptjs';
+import { Schema } from 'zod';
   import { Item } from './item.model';
   @index({ email: 1 })
   @pre<User>('save', async function () {
@@ -44,7 +45,7 @@ import {
     role: string;
     
     @prop()
-    searches: string[];
+    searches: []
 
     @prop()
     items: Item[];
