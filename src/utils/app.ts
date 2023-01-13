@@ -4,7 +4,6 @@ import morgan from 'morgan';
 import config from 'config';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import mongoose from '../utils/connectDB';
 import userRouter from '../routes/user.route';
 import authRouter from '../routes/auth.route';
 // import { config } from '../../config/custom-environment-variables';
@@ -14,33 +13,29 @@ const app = express();
 // Middleware
 
 // 1. Body Parser
-app.use(express.json({ limit: '50mb' }));
+app.use(express.json({ limit: '50kb' }));
 
 // 2. Cookie Parser
 app.use(cookieParser());
 
 // 3. Logger
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
-
+// console.log(config.get<string>('origin'))
 // // 4. Cors
-// app.use(
-//   cors({
-//     origin: config.get<string>('origin'),
-//     // origin: 'http://localhost:5173/',
-//     credentials: true,
-
-//   })
-// );
-const allowedOrigins = ['http://localhost:5173'];
-
-const options: cors.CorsOptions = {
-  origin: allowedOrigins,
-  credentials: true,
-  allowedHeaders:['Access-Control-Allow-Credentials'],
-  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
-};
-app.use(cors(options));
-
+app.use(
+  cors({
+    credentials:true,
+    origin: config.get<string>('origin')
+    // methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
+    // allowedHeaders:['Access-Control-Allow-Origin'], 
+  })
+);
+// app.use(function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', config.get<string>('origin'));
+//   res.header('Access-Control-Allow-Credentials', 'true');
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   next();
+// });
 // 5. Routes
 app.use('/api/users', userRouter);
 app.use('/api/auth', authRouter);

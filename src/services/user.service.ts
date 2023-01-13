@@ -36,9 +36,31 @@ export const deleteUser = async (id: string) => {
   return await userModel.findByIdAndRemove(id).deleteOne();
 };
 
-export const updateUser = async (id: Types.ObjectId, data: any) => {
-  const update = { $set: { items: data.items } };
-  const options = { upsert: true, new: true };
+
+export const addItem = async (id: Types.ObjectId, data: any) => {
+  const update = { $push: { items: data.item } };
+  // const options = { upsert: true};
+  return await userModel
+    .updateOne(
+      { _id: id },
+      update,
+      // options,
+      function (err: any, docs: any) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("Updated User : ", docs);
+        }
+      }
+    )
+    .catch(function (err) {
+      console.log(err);
+    });
+};
+
+export const deleteItem = async (id: Types.ObjectId, data: any) => {
+  const update = { $pull: { items: {id:data.id} } };
+  const options = { upsert: false, multi: true };
   return await userModel
     .findByIdAndUpdate(
       { _id: id },
@@ -48,7 +70,7 @@ export const updateUser = async (id: Types.ObjectId, data: any) => {
         if (err) {
           console.log(err);
         } else {
-          console.log("Updated User : ", docs);
+          console.log("Deleted Item : ", docs);
         }
       }
     )
@@ -57,6 +79,7 @@ export const updateUser = async (id: Types.ObjectId, data: any) => {
       console.log(err);
     });
 };
+
 
 // Sign Token
 export const signToken = async (user: DocumentType<User>) => {

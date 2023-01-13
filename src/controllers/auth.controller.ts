@@ -31,6 +31,7 @@ export const registerHandler = async (
   next: NextFunction
 ) => {
   try {
+    console.log(req.body)
     const user = await createUser({
       email: req.body.email,
       userName: req.body.userName,
@@ -61,6 +62,7 @@ export const loginHandler = async (
   res: Response,
   next: NextFunction
 ) => {
+  res.header("Access-Control-Allow-Origin", "*");
   try {
     // Get the user from the collection
     const user = await findUser({ email: req.body.email });
