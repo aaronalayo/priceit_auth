@@ -15,7 +15,7 @@ const app = express();
 // 1. Cors
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://priceit.herokuapp.com"],
+    origin: ["http://localhost:5173",  "https://priceit.herokuapp.com"],
     // origin: config.auth.origin,
     credentials: true,
   })
