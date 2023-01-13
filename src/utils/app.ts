@@ -10,32 +10,25 @@ import authRouter from '../routes/auth.route';
 
 const app = express();
 
+// 1. Cors
+app.use(
+  cors({
+    origin: config.get<string>('origin'),
+    // origin: config.auth.origin,
+    credentials: true,
+  })
+);
+
 // Middleware
 
 // 1. Body Parser
 app.use(express.json({ limit: '50kb' }));
 
-// 2. Cookie Parser
+// 3. Cookie Parser
 app.use(cookieParser());
 
-// 3. Logger
+// 4. Logger
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
-// console.log(config.get<string>('origin'))
-// // 4. Cors
-app.use(
-  cors({
-    credentials:true,
-    origin: config.get<string>('origin')
-    // methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
-    // allowedHeaders:['Access-Control-Allow-Origin'], 
-  })
-);
-// app.use(function(req, res, next) {
-//   res.header('Access-Control-Allow-Origin', config.get<string>('origin'));
-//   res.header('Access-Control-Allow-Credentials', 'true');
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//   next();
-// });
 // 5. Routes
 app.use('/api/users', userRouter);
 app.use('/api/auth', authRouter);

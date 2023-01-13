@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   price_it_auth:
     # depends_on:
@@ -6,8 +6,9 @@ services:
     build: .
     restart: unless-stopped
     env_file: ./.env
-    ports:
-      - ${DOCKER_SERVER_PORT}:${PORT}
+    ports:  
+      - 8000:8003 # For Github CI
+      # - ${DOCKER_SERVER_PORT}:${PORT} # For running locally
     environment:
       DOCKER_SERVER_PORT: ${DOCKER_SERVER_PORT}
       MONGO_HOST: ${MONGO_HOST}
@@ -22,21 +23,20 @@ services:
   #   image: mongo:latest
   #   container_name: mongo
   #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: ${DOCKER_MONGO_USERNAME}
-  #     MONGO_INITDB_ROOT_PASSWORD: ${DOCKER_MONGO_PASSWORD}
-  #     MONGO_INITDB_PORT: ${DOCKER_MONGO_PORT}
-  #     MONGO_INITDB_HOST: ${DOCKER_MONGO_HOST}
+  #     MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+  #     MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+  #     MONGO_INITDB_DATABASE: ${MONGO_DATABASE_NAME}
   #   env_file:
   #     - ./.env
   #   volumes:
-  #     - mongo:/data/mongo
+  #     - mongo:/data/db
   #   ports:
-  #     - ${DOCKER_MONGO_PORT}:27017
+  #     - '6000:27017'
   # redis:
   #   image: redis:latest
-  #   container_name: redis_auth
+  #   container_name: redis
   #   ports:
-  #     - 6380:6380
+  #     - '6380:6379'
   #   volumes:
   #     - redis:/data
 # volumes:
