@@ -62,7 +62,6 @@ import authRouter from './routes/auth.route';
 import app from './utils/app'
 
 const port = config.server.local_port;
-console.log(port)
 app.listen(port, () => {
   console.log(`⚡️[AUTH_API]: Server is running at http://localhost:${port} | Docker PORT: ${config.server.docker_port}`);
   mongoose;
