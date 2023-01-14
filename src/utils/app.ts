@@ -1,15 +1,19 @@
 require('dotenv').config();
 import express, { NextFunction, Request, Response,  } from 'express';
 import morgan from 'morgan';
+import helmet from 'helmet';
 import config from 'config';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import userRouter from '../routes/user.route';
 import authRouter from '../routes/auth.route';
+import { boolean } from 'zod';
 
 const app = express();
+app.use(helmet())
+
 // app.use(rateLimit)
-app.set('trust proxy', 1) 
+//app.set('trust proxy', 1) 
 // Middleware
 
 // 1. Cors
@@ -21,11 +25,12 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://priceit.zamanien.com");
-  next();
-});
-
+// app.use((req: Request, res: Response, next: NextFunction) => {
+//   res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+//   res.header("Access-Control-Allow-Credentials", "true");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 // 2. Body Parser
 app.use(express.json({ limit: '10mb' }));
 
