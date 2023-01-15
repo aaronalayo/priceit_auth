@@ -21,7 +21,7 @@ const accessTokenCookieOptions: CookieOptions = {
   httpOnly: true,
   secure: true,
   sameSite:'none',
-  domain: '.zamanien'
+  domain: '.zamanien.com'
 };
 
 // Only set secure to true in production
@@ -88,7 +88,7 @@ export const loginHandler = async (
       httpOnly: false,
       // secure: true,
       sameSite:'none',
-      domain: '.zamanien'
+      domain: '.zamanien.com'
     });
 
     // Send Access Token
