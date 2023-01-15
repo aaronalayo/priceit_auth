@@ -2,17 +2,17 @@ require('dotenv').config();
 import express, { NextFunction, Request, Response,  } from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
-// import config from 'config';
 import { config } from '../../config/custom-environment-variables';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import userRouter from '../routes/user.route';
 import authRouter from '../routes/auth.route';
-import { boolean } from 'zod';
 
 const app = express();
-// app.use(helmet())
 
+// Middleware
+
+// app.use(helmet())
 
 app.use(helmet())
 // app.use(helmet.permittedCrossDomainPolicies());
@@ -20,7 +20,7 @@ app.use(helmet())
 // app.use(helmet.xssFilter());
 // app.use(helmet.referrerPolicy({ policy: "strict-origin-when-cross-origin" }));
 
-// Middleware
+
 
 // 1. Cors
 app.use(cors({ origin: [config.auth.origin, config.auth.dev_origin], credentials: true }));
