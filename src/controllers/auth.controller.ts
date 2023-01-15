@@ -19,7 +19,8 @@ const accessTokenCookieOptions: CookieOptions = {
   // maxAge: config.get<number>('accessTokenExpiresIn') * 60 * 1000,
   maxAge: Number(config.auth.expireIn) * 60 * 1000,
   httpOnly: true,
-  sameSite: 'lax',
+  secure: true,
+  sameSite:'none'
 };
 
 // Only set secure to true in production
@@ -83,7 +84,9 @@ export const loginHandler = async (
     res.cookie('access_token', access_token, accessTokenCookieOptions);
     res.cookie('logged_in', true, {
       ...accessTokenCookieOptions,
-      httpOnly: false,
+      httpOnly: true,
+      secure: true,
+      sameSite:'none'
     });
 
     // Send Access Token
