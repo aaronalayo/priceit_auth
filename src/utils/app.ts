@@ -10,6 +10,7 @@ import { config } from '../../config/custom-environment-variables';
 import helmet from 'helmet';
 
 const app = express();
+app.set('trust proxy', 1);
 // Initialize helmet middleware
 // app.use(helmet());
 
