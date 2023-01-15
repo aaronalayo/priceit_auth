@@ -22,7 +22,7 @@ const accessTokenCookieOptions: CookieOptions = {
   secure: true,
   sameSite:'none',
   // domain: '.zamanien.com'
-  // domain: '75.119.139.228/*'
+  do  main: '75.119.139.228:5173'
 };
 
 // Only set secure to true in production
@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'production')
   accessTokenCookieOptions.secure = true;
 
 export const registerHandler = async (
-  req: Request<{}, {}, CreateUserInput>,
+  req: Request<{}, {}, CreateUserInput>,  
   res: Response,
   next: NextFunction
 ) => {

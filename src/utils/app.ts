@@ -11,60 +11,60 @@ import helmet from 'helmet';
 
 const app = express();
 // Initialize helmet middleware
-app.use(helmet());
+// app.use(helmet());
 
-// Content Security Policy
-app.use(helmet.contentSecurityPolicy({
-    directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'"],
-        styleSrc: ["'self'", "'unsafe-inline'"],
-        imgSrc: ["'self'", "data:"],
-        connectSrc: ["'self'", "https://*.cloudflare.com"],
-        fontSrc: ["'self'", "https://fonts.gstatic.com"],
-        objectSrc: ["'none'"],
-        frameSrc: ["'none'"],
-        workerSrc: ["'none'"],
-        frameAncestors: ["'none'"],
-        formAction: ["'self'"],
-        reportUri: '/csp-violation-report-endpoint'
-    },
-}));
+// // Content Security Policy
+// app.use(helmet.contentSecurityPolicy({
+//     directives: {
+//         defaultSrc: ["'self'"],
+//         scriptSrc: ["'self'", "'unsafe-inline'"],
+//         styleSrc: ["'self'", "'unsafe-inline'"],
+//         imgSrc: ["'self'", "data:"],
+//         connectSrc: ["'self'", "https://*.cloudflare.com"],
+//         fontSrc: ["'self'", "https://fonts.gstatic.com"],
+//         objectSrc: ["'none'"],
+//         frameSrc: ["'none'"],
+//         workerSrc: ["'none'"],
+//         frameAncestors: ["'none'"],
+//         formAction: ["'self'"],
+//         reportUri: '/csp-violation-report-endpoint'
+//     },
+// }));
 
-// DNS prefetch control
-app.use(helmet.dnsPrefetchControl({ allow: false }));
+// // DNS prefetch control
+// app.use(helmet.dnsPrefetchControl({ allow: false }));
 
-// Expect-CT
-app.use(helmet.expectCt({
-    enforce: true,
-    maxAge: 30,
-    reportUri: '/expect-ct-violation-report-endpoint'
-}));
+// // Expect-CT
+// app.use(helmet.expectCt({
+//     enforce: true,
+//     maxAge: 30,
+//     reportUri: '/expect-ct-violation-report-endpoint'
+// }));
 
-// Frameguard
-app.use(helmet.frameguard({ action: 'deny' }));
+// // Frameguard
+// app.use(helmet.frameguard({ action: 'deny' }));
 
-// Hide "powered by" header
-app.use(helmet.hidePoweredBy());
+// // Hide "powered by" header
+// app.use(helmet.hidePoweredBy());
 
-// HTTP Strict Transport Security
-app.use(helmet.hsts({
-    maxAge: 31536000, // 1 year
-    includeSubDomains: true,
-    preload: true
-}));
+// // HTTP Strict Transport Security
+// app.use(helmet.hsts({
+//     maxAge: 31536000, // 1 year
+//     includeSubDomains: true,
+//     preload: true
+// }));
 
-// Block Internet Explorer from executing downloads in your site's context
-app.use(helmet.ieNoOpen());
+// // Block Internet Explorer from executing downloads in your site's context
+// app.use(helmet.ieNoOpen());
 
-// MIME type sniffing
-app.use(helmet.noSniff());
+// // MIME type sniffing
+// app.use(helmet.noSniff());
 
-// Referrer Policy
-app.use(helmet.referrerPolicy({ policy: 'strict-origin-when-cross-origin' }));
+// // Referrer Policy
+// app.use(helmet.referrerPolicy({ policy: 'strict-origin-when-cross-origin' }));
 
-// XSS filter
-app.use(helmet.xssFilter());
+// // XSS filter
+// app.use(helmet.xssFilter());
 
 // Middleware
 
