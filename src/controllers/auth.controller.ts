@@ -21,8 +21,8 @@ const accessTokenCookieOptions: CookieOptions = {
   httpOnly: true,
   secure: true,
   sameSite:'none',
-  // domain: '.zamanien.com'
-  domain: '75.119.139.228:8080'
+  domain: '.zamanien.com'
+  // domain: '75.119.139.228:8080'
 };
 
 // Only set secure to true in production
@@ -89,8 +89,8 @@ export const loginHandler = async (
       httpOnly: false,
       // secure: true,
       sameSite:'none',
-      domain: '75.119.139.228:8080'
-      // domain: '.zamanien.com'
+      // domain: '75.119.139.228:8080'
+      domain: '.zamanien.com'
     });
 
     // Send Access Token
