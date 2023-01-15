@@ -4,8 +4,8 @@
   "description": "Application to handle user authentication for Priceit",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.ts",
-    "start": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "nodemon src/index.ts --max_old_space_size=2048",
+    "start": "ts-node-dev --respawn --transpile-only src/index.ts --max_old_space_size=2048",
     "test": "NODE_ENV=development jest --config=./jest.config.ts --rootDir=./src/"
   },
   "repository": {
