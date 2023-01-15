@@ -10,6 +10,7 @@ import authRouter from '../routes/auth.route';
 import { boolean } from 'zod';
 
 const app = express();
+app.use(helmet())
 // app.use(helmet.permittedCrossDomainPolicies());
 // app.use(helmet.referrerPolicy());
 // app.use(helmet.xssFilter());
@@ -20,7 +21,7 @@ const app = express();
 // Middleware
 
 // 1. Cors
-app.use(cors({ origin: ['https://priceit.zamanien.com', 'http://localhost:5173'], credentials: true }));
+app.use(cors({ origin: ['https://75.119.139.228:8080', 'http://localhost:5173'], credentials: true }));
 
 
 // app.use((req: Request, res: Response, next: NextFunction) => {
