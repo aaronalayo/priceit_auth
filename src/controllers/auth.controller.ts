@@ -89,6 +89,7 @@ export const loginHandler = async (
       httpOnly: false,
       // secure: true,
       sameSite:'none',
+      domain: '75.119.139.228'
       // domain: '.zamanien.com'
     });
 
