@@ -20,7 +20,7 @@ app.use(helmet.referrerPolicy({ policy: "strict-origin-when-cross-origin" }));
 // Middleware
 
 // 1. Cors
-app.use(cors({ origin: 'https://*.zamanien.com', credentials: true }));
+app.use(cors({ origin: 'https://priceit.zamanien.com', credentials: true }));
 
 
 // app.use((req: Request, res: Response, next: NextFunction) => {
