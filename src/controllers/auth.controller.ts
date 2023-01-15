@@ -86,7 +86,7 @@ export const loginHandler = async (
     res.cookie('logged_in', true, {
       ...accessTokenCookieOptions,
       httpOnly: false,
-      // secure: true,
+      secure: true,
       sameSite:'none',
       domain: '.zamanien.com'
     });
