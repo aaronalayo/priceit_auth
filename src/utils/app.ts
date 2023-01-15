@@ -10,20 +10,18 @@ import authRouter from '../routes/auth.route';
 import { boolean } from 'zod';
 
 const app = express();
-app.use(helmet())
+app.use(helmet.permittedCrossDomainPolicies());
+app.use(helmet.referrerPolicy());
+app.use(helmet.xssFilter());
+app.use(helmet.referrerPolicy({ policy: "strict-origin-when-cross-origin" }));
 
 // app.use(rateLimit)
 //app.set('trust proxy', 1) 
 // Middleware
 
 // 1. Cors
-app.use(
-  cors({
-    origin: ["http://localhost:5173", "https://priceit.herokuapp.com", "https://priceit.zamanien.com", "http://75.119.139.228:8080"],
-    // origin: config.auth.origin,
-    credentials: true,
-  })
-);
+app.use(cors({ origin: 'https://*.zamanien.com', credentials: true }));
+
 
 // app.use((req: Request, res: Response, next: NextFunction) => {
 //   res.header("Access-Control-Allow-Origin", "http://localhost:5173");
