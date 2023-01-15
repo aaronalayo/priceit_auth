@@ -19,7 +19,7 @@
     // maxAge: config.get<number>('accessTokenExpiresIn') * 60 * 1000,
     maxAge: Number(config.auth.expireIn) * 60 * 1000,
     httpOnly: false,
-    // secure: true,
+    secure: true,
     sameSite:'none'
   };
 

@@ -20,8 +20,16 @@ const app = express();
 // Middleware
 
 // 1. Cors
-app.use(cors({ origin: 'https://priceit.zamanien.com', credentials: true }));
+app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 
+
+// app.use((req: Request, res: Response, next: NextFunction) => {
+//   res.header("Access-Control-Allow-Origin", "https://priceit.zamanien.com");
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+//   res.header("Access-Control-Allow-Credentials", "true");
+//   next();
+// });
 // 2. Body Parser
 app.use(express.json({ limit: '10mb' }));
 
