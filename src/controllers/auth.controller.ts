@@ -22,7 +22,7 @@ const accessTokenCookieOptions: CookieOptions = {
   secure: true,
   sameSite:'none',
   // domain: '.zamanien.com'
-  do  main: '75.119.139.228:5173'
+  domain: '75.119.139.228:5173'
 };
 
 // Only set secure to true in production
