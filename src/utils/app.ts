@@ -10,16 +10,15 @@ import authRouter from '../routes/auth.route';
 import { boolean } from 'zod';
 
 const app = express();
+// app.use(helmet())
 
 
 // app.use(helmet())
-// app.use(helmet.permittedCrossDomainPolicies());
-// app.use(helmet.referrerPolicy());
-// app.use(helmet.xssFilter());
-// app.use(helmet.referrerPolicy({ policy: "strict-origin-when-cross-origin" }));
+app.use(helmet.permittedCrossDomainPolicies());
+app.use(helmet.referrerPolicy());
+app.use(helmet.xssFilter());
+app.use(helmet.referrerPolicy({ policy: "strict-origin-when-cross-origin" }));
 
-// app.use(rateLimit)
-app.set('trust proxy', 1) 
 // Middleware
 
 // 1. Cors
