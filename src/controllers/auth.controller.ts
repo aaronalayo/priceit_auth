@@ -21,7 +21,8 @@ const accessTokenCookieOptions: CookieOptions = {
   httpOnly: true,
   secure: true,
   sameSite:'none',
-  domain: '.zamanien.com'
+  // domain: '.zamanien.com'
+  domain: '75.119.139.228/*'
 };
 
 // Only set secure to true in production
