@@ -21,7 +21,7 @@ app.use(helmet())
 // Middleware
 
 // 1. Cors
-app.use(cors({ origin: ['https://75.119.139.228:8080', 'http://localhost:5173'], credentials: true }));
+app.use(cors({ origin: ['http://75.119.139.228:8080', 'http://localhost:5173'], credentials: true }));
 
 
 // app.use((req: Request, res: Response, next: NextFunction) => {
