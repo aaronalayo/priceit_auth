@@ -20,7 +20,9 @@
     maxAge: Number(config.auth.expireIn) * 60 * 1000,
     // httpOnly: false,
     // secure: true,
-    sameSite:'none'
+    sameSite:'none',
+    domain: '*.zamanien.com',
+    secure: false
   };
 
   // Only set secure to true in production
