@@ -20,7 +20,8 @@ const accessTokenCookieOptions: CookieOptions = {
   maxAge: Number(config.auth.expireIn) * 60 * 1000,
   // httpOnly: true,
   secure: true,
-  sameSite:'none'
+  sameSite:'none',
+  domain: '.zamanien'
 };
 
 // Only set secure to true in production
