@@ -84,9 +84,9 @@ export const loginHandler = async (
     res.cookie('access_token', access_token, accessTokenCookieOptions);
     res.cookie('logged_in', true, {
       ...accessTokenCookieOptions,
-      httpOnly: true,
-      secure: true,
-      sameSite:'none'
+      // httpOnly: true,
+      // secure: true,
+      // sameSite:'none'
     });
 
     // Send Access Token
