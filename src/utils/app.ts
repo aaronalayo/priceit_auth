@@ -1,32 +1,20 @@
-require('dotenv').config();
+import { config } from '../../config/custom-environment-variables';
 import express, { NextFunction, Request, Response,  } from 'express';
 import morgan from 'morgan';
-import config from 'config';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import userRouter from '../routes/user.route';
 import authRouter from '../routes/auth.route';
-// import { config } from '../../config/custom-environment-variables';
-
 
 const app = express();
-// app.use(rateLimit)
-app.set('trust proxy', 1) 
+
 // Middleware
 
-// 1. Cors
-app.use(
-  cors({
-    origin: ["http://localhost:5173", "https://priceit.herokuapp.com", "https://priceit.zamanien.com", "http://75.119.139.228:8080"],
-    // origin: config.auth.origin,
-    credentials: true,
-  })
-);
+// app.use(helmet())
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://priceit.zamanien.com");
-  next();
-});
+// 1. Cors
+app.use(cors({ origin: [config.auth.origin, config.auth.dev_origin], credentials: true }));
+
 
 // 2. Body Parser
 app.use(express.json({ limit: '10mb' }));

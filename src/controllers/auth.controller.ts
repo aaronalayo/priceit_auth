@@ -1,7 +1,6 @@
 import { config } from '../../config/custom-environment-variables';
 // import config from 'config';
 import { CookieOptions, NextFunction, Request, Response } from 'express';
-import { date } from 'zod';
 import { CreateUserInput, LoginUserInput } from '../schema/user.schema';
 import { createUser, findUser, signToken } from '../services/user.service';
 import AppError from '../utils/appError';
@@ -84,9 +83,9 @@ export const loginHandler = async (
     res.cookie('access_token', access_token, accessTokenCookieOptions);
     res.cookie('logged_in', true, {
       ...accessTokenCookieOptions,
-      httpOnly: true,
-      secure: true,
-      sameSite:'none'
+      // httpOnly: true,
+      // secure: true,
+      // sameSite:'none'
     });
 
     // Send Access Token
