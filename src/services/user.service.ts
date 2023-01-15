@@ -36,7 +36,10 @@ export const deleteUser = async (id: string) => {
   return await userModel.findByIdAndRemove(id).deleteOne();
 };
 
-
+export const findUserItem = async (data: any) => {
+  return await userModel.exists({items: data.item }, 
+  )
+ };
 export const addItem = async (id: Types.ObjectId, data: any) => {
   const update = { $push: { items: data.item } };
   // const options = { upsert: true};
@@ -77,6 +80,11 @@ export const deleteItem = async (id: Types.ObjectId, data: any) => {
     .catch(function (err) {
       console.log(err);
     });
+};
+export const findSearchWord = async (id: Types.ObjectId, data: any) => {
+  console.log(data)
+ return await userModel.findOne({_id:id}).where({searches: data }, 
+ )
 };
 export const addSearchWord = async (id: Types.ObjectId, data: any) => {
   console.log(data)

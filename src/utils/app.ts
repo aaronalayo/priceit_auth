@@ -6,7 +6,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import userRouter from '../routes/user.route';
 import authRouter from '../routes/auth.route';
-import { rateLimit } from 'express-rate-limit';
+// import { rateLimit } from 'express-rate-limit';
 
 // import { config } from '../../config/custom-environment-variables';
 
@@ -25,7 +25,7 @@ app.use(
 // Middleware
 
 // 1. Body Parser
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '50mb' }));
 
 // 3. Cookie Parser
 app.use(cookieParser());
