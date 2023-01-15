@@ -22,7 +22,6 @@ const accessTokenCookieOptions: CookieOptions = {
   secure: true,
   sameSite:'none',
   domain: '.zamanien.com'
-  // domain: '75.119.139.228:8080'
 };
 
 // Only set secure to true in production
@@ -86,11 +85,6 @@ export const loginHandler = async (
     res.cookie('access_token', access_token, accessTokenCookieOptions);
     res.cookie('logged_in', true, {
       ...accessTokenCookieOptions,
-      httpOnly: false,
-      // secure: true,
-      sameSite:'none',
-      // domain: '75.119.139.228:8080'
-      domain: '.zamanien.com'
     });
 
     // Send Access Token
