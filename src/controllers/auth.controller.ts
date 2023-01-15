@@ -20,7 +20,7 @@ const accessTokenCookieOptions: CookieOptions = {
   maxAge: Number(config.auth.expireIn) * 60 * 1000,
   httpOnly: true,
   secure: true,
-  sameSite:'none',
+  sameSite:'lax',
   domain: '.zamanien.com'
 };
 
@@ -87,7 +87,7 @@ export const loginHandler = async (
       ...accessTokenCookieOptions,
       httpOnly: false,
       secure: true,
-      sameSite:'none',
+      sameSite:'lax',
       domain: '.zamanien.com'
     });
 
