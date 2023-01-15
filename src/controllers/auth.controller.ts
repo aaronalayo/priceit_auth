@@ -7,8 +7,8 @@ import { createUser, findUser, signToken } from '../services/user.service';
 import AppError from '../utils/appError';
 
 // Exclude this fields from the response
-export const excludedFields = ['password'];
-
+export const excludedFields = ['password', 'searches', 'items'];
+export const excludedInfoFields = ['username', 'firstName', 'lastName', 'email', 'password']
 // Cookie options
 const accessTokenCookieOptions: CookieOptions = {
   expires: new Date(

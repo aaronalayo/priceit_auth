@@ -6,6 +6,8 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import userRouter from '../routes/user.route';
 import authRouter from '../routes/auth.route';
+// import { config } from '../../config/custom-environment-variables';
+
 
 const app = express();
 // app.use(rateLimit)

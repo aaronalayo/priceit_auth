@@ -28,7 +28,7 @@ export const deserializeUser = async (
     // Validate Access Token
     const decoded = verifyJwt<{ sub: string }>(access_token);
     const newDecoded = JSON.parse(JSON.stringify(decoded))
-    console.log(typeof newDecoded.sub._id)
+   
     if (!decoded) {
       return next(new AppError(`Invalid token or user doesn't exist`, 401));
     }
