@@ -22,6 +22,7 @@ const MONGO_URL = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:$
 
 const ACCESS_TOKEN_EXPIRES_IN = process.env.ACCESS_TOKEN_EXPIRE as unknown as number;
 const ORIGIN = process.env.ORIGIN as string;
+const DEV_ORIGIN = process.env.DEV_ORIGIN as string;
 
 const ACCESS_TOKEN_PRIVATE_KEY = process.env.ACCESS_TOKEN_PRIVATE_KEY as string
 const ACCESS_TOKEN_PUBLIC_KEY = process.env.ACCESS_TOKEN_PUBLIC_KEY as string
@@ -47,7 +48,8 @@ export const config = {
     expireIn: ACCESS_TOKEN_EXPIRES_IN,
     accessTokenPrivateKey: ACCESS_TOKEN_PRIVATE_KEY,
     accessTokenPublicKey: ACCESS_TOKEN_PUBLIC_KEY,
-    origin: ORIGIN
+    origin: ORIGIN,
+    dev_origin: DEV_ORIGIN
   },
   redis: {
     host: REDIS_HOST,

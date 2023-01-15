@@ -1,26 +1,75 @@
 require('dotenv').config();
 import express, { NextFunction, Request, Response,  } from 'express';
 import morgan from 'morgan';
-import config from 'config';
+// import config from 'config';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import userRouter from '../routes/user.route';
 import authRouter from '../routes/auth.route';
-// import { config } from '../../config/custom-environment-variables';
-
+import { config } from '../../config/custom-environment-variables';
+import helmet from 'helmet';
 
 const app = express();
+// Initialize helmet middleware
+app.use(helmet());
+
+// Content Security Policy
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", "data:"],
+        connectSrc: ["'self'", "https://*.cloudflare.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        objectSrc: ["'none'"],
+        frameSrc: ["'none'"],
+        workerSrc: ["'none'"],
+        frameAncestors: ["'none'"],
+        formAction: ["'self'"],
+        reportUri: '/csp-violation-report-endpoint'
+    },
+}));
+
+// DNS prefetch control
+app.use(helmet.dnsPrefetchControl({ allow: false }));
+
+// Expect-CT
+app.use(helmet.expectCt({
+    enforce: true,
+    maxAge: 30,
+    reportUri: '/expect-ct-violation-report-endpoint'
+}));
+
+// Frameguard
+app.use(helmet.frameguard({ action: 'deny' }));
+
+// Hide "powered by" header
+app.use(helmet.hidePoweredBy());
+
+// HTTP Strict Transport Security
+app.use(helmet.hsts({
+    maxAge: 31536000, // 1 year
+    includeSubDomains: true,
+    preload: true
+}));
+
+// Block Internet Explorer from executing downloads in your site's context
+app.use(helmet.ieNoOpen());
+
+// MIME type sniffing
+app.use(helmet.noSniff());
+
+// Referrer Policy
+app.use(helmet.referrerPolicy({ policy: 'strict-origin-when-cross-origin' }));
+
+// XSS filter
+app.use(helmet.xssFilter());
+
 // Middleware
 
 // 1. Cors
-app.use(
-  cors({
-    origin: ["http://localhost:5173"],
-    // origin: config.auth.origin,
-    credentials: true,
-  })
-);
-
+app.use(cors({ origin: [config.auth.origin, config.auth.dev_origin], credentials: true }));
 
 // 2. Body Parser
 app.use(express.json({ limit: '10mb' }));
