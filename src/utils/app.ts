@@ -2,7 +2,8 @@ require('dotenv').config();
 import express, { NextFunction, Request, Response,  } from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
-import config from 'config';
+// import config from 'config';
+import { config } from '../../config/custom-environment-variables';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import userRouter from '../routes/user.route';
@@ -13,16 +14,16 @@ const app = express();
 // app.use(helmet())
 
 
-// app.use(helmet())
-app.use(helmet.permittedCrossDomainPolicies());
-app.use(helmet.referrerPolicy());
-app.use(helmet.xssFilter());
-app.use(helmet.referrerPolicy({ policy: "strict-origin-when-cross-origin" }));
+app.use(helmet())
+// app.use(helmet.permittedCrossDomainPolicies());
+// app.use(helmet.referrerPolicy());
+// app.use(helmet.xssFilter());
+// app.use(helmet.referrerPolicy({ policy: "strict-origin-when-cross-origin" }));
 
 // Middleware
 
 // 1. Cors
-app.use(cors({ origin: ['https://priceit.zamanien.com', 'http://localhost:5173'], credentials: true }));
+app.use(cors({ origin: [config.auth.origin, config.auth.dev_origin], credentials: true }));
 
 // 2. Body Parser
 app.use(express.json({ limit: '10mb' }));
