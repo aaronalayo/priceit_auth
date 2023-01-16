@@ -32,8 +32,9 @@ export const findUser = async (
 ) => {
   return await userModel.findOne(query, {}, options).select("+password");
 };
-export const deleteUser = async (id: string) => {
-  return await userModel.findByIdAndRemove(id).deleteOne();
+export const deleteUser = async (email: string) => {
+  const user = await findUser({email:email})
+  return await userModel.deleteOne({where: user?.email});
 };
 
 export const findUserItem = async (data: any) => {

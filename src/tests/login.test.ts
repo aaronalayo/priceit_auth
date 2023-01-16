@@ -35,14 +35,14 @@ describe("Test route for login", () => {
     });
 
     afterEach(async () => {
-      await deleteUser({ where: { email: email } });
+      await deleteUser(email);
     });
     afterEach(async () => {
         await redisClient.quit();
       });
     afterAll(async () => {
       try {
-        await deleteUser({ where: { email: email } });
+        await deleteUser(email );
       } catch (e) {}
     });
     afterAll(async () => {
