@@ -7,7 +7,7 @@ import userModel, { User } from "../models/user.model";
 import { excludedFields, excludedInfoFields } from "../controllers/auth.controller";
 import { signJwt } from "../utils/jwt";
 import { DocumentType } from "@typegoose/typegoose";
-import { UpdateUserProps } from "../schema/user.schema";
+
 // CreateUser service
 export const createUser = async (input: Partial<User>) => {
   const user = await userModel.create(input);
@@ -32,8 +32,9 @@ export const findUser = async (
 ) => {
   return await userModel.findOne(query, {}, options).select("+password");
 };
-export const deleteUser = async (id: string) => {
-  return await userModel.findByIdAndRemove(id).deleteOne();
+export const deleteUser = async (query: FilterQuery<User>,
+  options: QueryOptions = {}) => {
+  return await userModel.findOneAndDelete(query, options).deleteOne();
 };
 
 export const findUserItem = async (data: any) => {

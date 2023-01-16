@@ -1,7 +1,17 @@
-import { prop } from "@typegoose/typegoose";
+
+import {
+  DocumentType,
+  getModelForClass,
+  index,
+  modelOptions,
+  mongoose,
+  pre,
+  prop,
+  Severity
+} from '@typegoose/typegoose';
 
 export class Item {
-  @prop()
+  @prop({type: mongoose.Schema.Types.Mixed})
   id: string;
   @prop()
   title: string;
@@ -17,3 +27,5 @@ export class Item {
   @prop()
   itemRef: string;
 }
+const itemModel = getModelForClass(Item);
+export default itemModel;

@@ -20,13 +20,13 @@ let server:Server
 describe("Test route for login", () => {
     beforeAll( async ()=>{
         server = app.listen(8888)
-        await redisClient.connect()
+        
     })
   beforeEach(async () => {
     // encrypt reusable password
     const hashed_password = await bcrypt.hash(password, 12);
     // create user
-    await createUser({
+   const user = await createUser({
       email: email,
       userName: userName,
       firstName: firstName,
@@ -45,11 +45,11 @@ describe("Test route for login", () => {
         await deleteUser({ where: { email: email } });
       } catch (e) {}
     });
-    afterAll(async () => {
-        // Closing the DB connection allows Jest to exit successfully.
-        await redisClient.quit();
+    // afterAll(async () => {
+    //     // Closing the DB connection allows Jest to exit successfully.
+        
        
-      });
+    //   });
  
 
     test("Login: Test for valid inputs should redirect", (done) => {
